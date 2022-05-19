@@ -1,2 +1,4 @@
-export class ProductStatus {
+export enum ProductStatus {
+  'Available',
+  'Unavailable',
 }

@@ -1,2 +1,6 @@
-export class CategoryType {
+export enum CategoryType {
+  'Books',
+  'Food',
+  'Clothes',
+  'Drink',
 }

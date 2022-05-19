@@ -1,2 +1,5 @@
-export class OrderStatus {
+export enum OrderStatus {
+  'New',
+  'Finished',
+  'Cenceled',
 }
