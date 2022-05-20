@@ -1,1 +1,135 @@
-<p>product-detail works!</p>
+<!-- breadcrum -->
+<div class="py-4 container flex gap-3 items-center">
+  <a href="index.html" class="text-primary text-base">
+    <i class="fas fa-home"></i>
+  </a>
+  <span class="text-sm text-gray-400"
+    ><i class="fas fa-chevron-right"></i
+  ></span>
+  <a href="shop.html" class="text-primary text-base font-medium uppercase">
+    Shop
+  </a>
+  <span class="text-sm text-gray-400"
+    ><i class="fas fa-chevron-right"></i
+  ></span>
+  <p class="text-gray-600 font-medium uppercase">
+    {{ productInfo.productName }}
+  </p>
+</div>
+<!-- breadcrum end -->
+
+<!-- product view -->
+<div class="container pt-4 pb-6 grid lg:grid-cols-2 gap-6">
+  <!-- product image -->
+  <div>
+    <div>
+      <img id="main-img" src="{{ productInfo.productIcon }}" class="w-full" />
+    </div>
+  </div>
+  <!-- product image end -->
+  <!-- product content -->
+  <div>
+    <h2 class="md:text-3xl text-2xl font-medium uppercase mb-2">
+      {{ productInfo.productName }}
+    </h2>
+    <div class="flex items-center mb-4">
+      <div class="flex gap-1 text-sm text-yellow-400">
+        <span><i class="fas fa-star"></i></span>
+        <span><i class="fas fa-star"></i></span>
+        <span><i class="fas fa-star"></i></span>
+        <span><i class="fas fa-star"></i></span>
+        <span><i class="fas fa-star"></i></span>
+      </div>
+      <div class="text-xs text-gray-500 ml-3">(150 Reviews)</div>
+    </div>
+    <div class="space-y-2">
+      <p class="text-gray-800 font-semibold space-x-2">
+        <span>Availability: </span>
+        <span class="text-green-600" *ngIf="productInfo.productStock > 0">
+          In Stock</span
+        >
+      </p>
+      <p class="space-x-2">
+        <span class="text-gray-800 font-semibold">Brand: </span>
+        <span class="text-gray-600">Apex</span>
+      </p>
+      <p class="space-x-2">
+        <span class="text-gray-800 font-semibold">Category: </span>
+        <span class="text-gray-600">{{ productInfo.categoryType }}</span>
+      </p>
+      <p class="space-x-2">
+        <span class="text-gray-800 font-semibold">SKU: </span>
+        <span class="text-gray-600">BE45VGRT</span>
+      </p>
+    </div>
+    <div class="mt-4 flex items-baseline gap-3">
+      <span class="text-primary font-semibold text-xl">{{
+        productInfo?.productPrice | currency
+      }}</span>
+    </div>
+    <p class="mt-4 text-gray-600">
+      {{ productInfo.productDescription }}
+    </p>
+    <!-- quantity -->
+    <div class="mt-4">
+      <h3 class="text-base text-gray-800 mb-1">Quantity</h3>
+      <div
+        class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max"
+      >
+        <div
+          class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+        >
+          -
+        </div>
+        <div class="h-8 w-10 flex items-center justify-center">4</div>
+        <div
+          class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+        >
+          +
+        </div>
+      </div>
+    </div>
+    <!-- color end -->
+    <!-- add to cart button -->
+    <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6">
+      <a
+        href="#"
+        class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center"
+      >
+        <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Add to
+        cart
+      </a>
+    </div>
+    <!-- add to cart button end -->
+  </div>
+  <!-- product content end -->
+</div>
+<!-- product view end -->
+
+<!-- product details and review -->
+<div class="container pb-16">
+  <!-- detail buttons -->
+  <h3
+    class="border-b border-gray-200 font-roboto text-gray-800 pb-3 font-medium"
+  >
+    Product Details
+  </h3>
+  <!-- details button end -->
+
+  <!-- details content -->
+  <div class="lg:w-4/5 xl:w-3/5 pt-6">
+    <div class="space-y-3 text-gray-600">
+      <p>
+        {{ productInfo.productDescription }}
+      </p>
+      <p>
+        {{ productInfo.productDescription }}
+      </p>
+      <p>
+        {{ productInfo.productDescription }}
+      </p>
+    </div>
+  </div>
+  <!-- details content end -->
+</div>
+<!-- product details and review end -->

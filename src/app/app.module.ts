@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptorService } from './_interceptors/jwt-interceptor.service';
+import { HomeComponent } from './pages/home/home.component';
+import { SearchComponent } from './pages/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,8 @@ import { JwtInterceptorService } from './_interceptors/jwt-interceptor.service';
     UserEditComponent,
     NavigationComponent,
     PaginationComponent,
+    HomeComponent,
+    SearchComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
