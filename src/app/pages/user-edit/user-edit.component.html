@@ -49,11 +49,11 @@
           class="hover:text-primary transition capitalize block text-primary"
           >Profile information</a
         >
-        <a
+        <!-- <a
           href="manage-address.html"
           class="hover:text-primary transition capitalize block"
           >Manage address</a
-        >
+        > -->
         <a
           href="change-password.html"
           class="hover:text-primary transition capitalize block"
@@ -64,7 +64,7 @@
       <!-- single link -->
       <div class="space-y-1 pl-8 pt-4">
         <a
-          href="#"
+          routerLink="/order"
           class="relative medium capitalize text-gray-800 font-medium hover:text-primary transition block"
         >
           My order history
@@ -72,15 +72,6 @@
             <i class="fas fa-gift"></i>
           </span>
         </a>
-        <a href="#" class="hover:text-primary transition block capitalize"
-          >my returns</a
-        >
-        <a href="#" class="hover:text-primary transition block capitalize"
-          >my cancellations</a
-        >
-        <a href="#" class="hover:text-primary transition block capitalize"
-          >my reviews</a
-        >
       </div>
       <!-- single link end -->
 
@@ -133,6 +124,8 @@
               [(ngModel)]="user.name"
               #name="ngModel"
               name="name"
+              autofocus
+              required
               [ngClass]="{
                 'border-red-500': name.invalid && (name.touched || name.touched)
               }"
@@ -148,13 +141,50 @@
           </div>
           <div>
             <label class="text-gray-600 mb-2 block"> Phone Number </label>
-            <input type="text" class="input-box" [value]="user?.phone" />
+            <input
+              type="text"
+              class="input-box"
+              [value]="user?.phone"
+              [(ngModel)]="user.phone"
+              #phone="ngModel"
+              required
+              [ngClass]="{
+                'border-red-500':
+                  phone.invalid && (phone.touched || phone.touched)
+              }"
+              name="phone"
+            />
+            <div *ngIf="phone.invalid && (phone.touched || phone.dirty)">
+              <span class="text-xs text-red-700" *ngIf="phone.errors.required">
+                Phone number is required</span
+              >
+            </div>
           </div>
         </div>
         <div class="grid sm:grid-cols-1 gap-4">
           <div>
             <label class="text-gray-600 mb-2 block"> Address </label>
-            <input type="text" class="input-box" [value]="user?.address" />
+            <input
+              type="text"
+              class="input-box"
+              [value]="user?.address"
+              [(ngModel)]="user.address"
+              #address="ngModel"
+              required
+              name="address"
+              [ngClass]="{
+                'border-red-500':
+                  address.invalid && (address.touched || address.touched)
+              }"
+            />
+            <div *ngIf="address.invalid && (address.touched || address.dirty)">
+              <span
+                class="text-xs text-red-700"
+                *ngIf="address.errors.required"
+              >
+                Address is required</span
+              >
+            </div>
           </div>
         </div>
       </div>

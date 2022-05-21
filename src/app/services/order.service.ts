@@ -16,21 +16,21 @@ export class OrderService {
     return this.http.get(`${this.orderUrl}?page=${page}&size=${size}`);
   }
 
-  show(id: any): Observable<Order> {
+  show(id): Observable<Order> {
     return this.http
       .get<Order>(`${this.orderUrl}/${id}`)
-      .pipe(catchError((_) => of(new Order())));
+      .pipe(catchError((_) => of(null)));
   }
 
-  cancel(id: any): Observable<Order> {
+  cancel(id): Observable<Order> {
     return this.http
       .patch<Order>(`${this.orderUrl}/cancel/${id}`, null)
-      .pipe(catchError((_) => of(new Order())));
+      .pipe(catchError((_) => of(null)));
   }
 
-  finish(id: any): Observable<Order> {
+  finish(id): Observable<Order> {
     return this.http
       .patch<Order>(`${this.orderUrl}/finish/${id}`, null)
-      .pipe(catchError((_) => of(new Order())));
+      .pipe(catchError((_) => of(null)));
   }
 }

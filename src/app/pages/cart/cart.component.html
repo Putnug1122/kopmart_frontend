@@ -1,5 +1,5 @@
 <div class="py-4 container flex gap-3 items-center">
-  <a href="index.html" class="text-primary text-base">
+  <a routerLink="/" class="text-primary text-base">
     <i class="fas fa-home"></i>
   </a>
   <span class="text-sm text-gray-400"
@@ -22,14 +22,14 @@
     <!-- cart title end -->
 
     <!-- shipping carts -->
-    <div class="space-y-4">
+    <div class="space-y-4" *ngFor="let productInfo of productInOrders">
       <!-- single cart -->
       <div
         class="flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap"
       >
         <!-- cart image -->
         <div class="w-32 flex-shrink-0">
-          <img src="images/products/product9.jpg" class="w-full" />
+          <img src="{{ productInfo.productIcon }}" class="w-full" />
         </div>
         <!-- cart image end -->
         <!-- cart content -->
@@ -37,79 +37,53 @@
           <h2
             class="text-gray-800 mb-3 xl:text-xl textl-lg font-medium uppercase"
           >
-            Italian L Shape Sofa
+            {{ productInfo.productName }}
           </h2>
-          <p class="text-primary font-semibold">$45.00</p>
-          <p class="text-gray-500">Size: M</p>
+          <p class="text-primary font-semibold">
+            {{ productInfo.productPrice | currency }}
+          </p>
         </div>
         <!-- cart content end -->
         <!-- cart quantity -->
         <div
           class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300"
         >
-          <div
-            class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+          <a
+            (click)="minusOne(productInfo)"
+            class="h-9 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
           >
             -
+          </a>
+          <div class="h-8 w-24 justify-center items-center">
+            <input
+              [max]="productInfo.productStock"
+              min="1"
+              id="{{ productInfo.productId }}"
+              (change)="onChange(productInfo)"
+              [(ngModel)]="productInfo.count"
+              name="count"
+              required
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            />
           </div>
-          <div class="h-8 w-10 flex items-center justify-center">4</div>
-          <div
-            class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+          <a
+            (click)="addOne(productInfo)"
+            class="h-9 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
           >
             +
-          </div>
+          </a>
         </div>
         <!-- cart quantity end -->
         <div class="ml-auto md:ml-0">
-          <p class="text-primary text-lg font-semibold">$320.00</p>
+          <p class="text-primary text-lg font-semibold">
+            {{ productInfo.productPrice * productInfo.count | currency }}
+          </p>
         </div>
         <div class="text-gray-600 hover:text-primary cursor-pointer">
-          <i class="fas fa-trash"></i>
-        </div>
-      </div>
-      <!-- single cart end -->
-      <!-- single cart -->
-      <div
-        class="flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap"
-      >
-        <!-- cart image -->
-        <div class="w-32 flex-shrink-0">
-          <img src="images/products/product9.jpg" class="w-full" />
-        </div>
-        <!-- cart image end -->
-        <!-- cart content -->
-        <div class="md:w-1/3 w-full">
-          <h2
-            class="text-gray-800 mb-3 xl:text-xl textl-lg font-medium uppercase"
-          >
-            Italian L Shape Sofa
-          </h2>
-          <p class="text-primary font-semibold">$45.00</p>
-          <p class="text-gray-500">Size: M</p>
-        </div>
-        <!-- cart content end -->
-        <!-- cart quantity -->
-        <div
-          class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300"
-        >
-          <div
-            class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
-          >
-            -
-          </div>
-          <div class="h-8 w-10 flex items-center justify-center">4</div>
-          <div
-            class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
-          >
-            +
-          </div>
-        </div>
-        <!-- cart quantity end -->
-        <div class="ml-auto md:ml-0">
-          <p class="text-primary text-lg font-semibold">$320.00</p>
-        </div>
-        <div class="text-gray-600 hover:text-primary cursor-pointer">
-          <i class="fas fa-trash"></i>
+          <a routerLink="./" (click)="remove(productInfo)"
+            ><i class="fas fa-trash"></i
+          ></a>
         </div>
       </div>
       <!-- single cart end -->
@@ -127,7 +101,7 @@
     <div class="space-y-1 text-gray-600 pb-3 border-b border-gray-200">
       <div class="flex justify-between font-medium">
         <p>Subtotal</p>
-        <p>$320</p>
+        <p>{{ total | currency }}</p>
       </div>
       <div class="flex justify-between">
         <p>Delivery</p>
@@ -142,32 +116,16 @@
       class="flex justify-between my-3 text-gray-800 font-semibold uppercase"
     >
       <h4>Total</h4>
-      <h4>$320</h4>
+      <h4>{{ total | currency }}</h4>
     </div>
-
-    <!-- searchbar -->
-    <div class="flex mb-5">
-      <input
-        type="text"
-        class="pl-4 w-full border border-r-0 border-primary py-2 px-3 rounded-l-md focus:ring-primary focus:border-primary text-sm"
-        placeholder="Coupon"
-      />
-      <button
-        type="submit"
-        class="bg-primary border border-primary text-white px-5 font-medium rounded-r-md hover:bg-transparent hover:text-primary transition text-sm font-roboto"
-      >
-        Apply
-      </button>
-    </div>
-    <!-- searchbar end -->
 
     <!-- checkout -->
-    <a
-      href="checkout.html"
+    <button
+      (click)="checkout()"
       class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-sm w-full block text-center"
     >
       Process to checkout
-    </a>
+    </button>
     <!-- checkout end -->
   </div>
   <!-- order summary end -->

@@ -31,7 +31,7 @@
         <!-- navicons -->
         <div class="space-x-4 flex items-center">
           <a
-            href="cart.html"
+            routerLink="/cart"
             class="lg:block text-center text-gray-700 hover:text-primary transition hidden relative"
           >
             <span
@@ -42,6 +42,15 @@
               <i class="fas fa-shopping-bag"></i>
             </div>
             <div class="text-xs leading-3">Cart</div>
+          </a>
+          <a
+            routerLink="/order"
+            class="lg:block text-center text-gray-700 hover:text-primary transition hidden relative"
+          >
+            <div class="text-2xl">
+              <i class="far fa-shopping-cart"></i>
+            </div>
+            <div class="text-xs leading-3">Order</div>
           </a>
           <a
             routerLink="/profile"

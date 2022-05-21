@@ -42,65 +42,115 @@
       </div>
       <div class="text-xs text-gray-500 ml-3">(150 Reviews)</div>
     </div>
-    <div class="space-y-2">
-      <p class="text-gray-800 font-semibold space-x-2">
-        <span>Availability: </span>
-        <span class="text-green-600" *ngIf="productInfo.productStock > 0">
-          In Stock</span
-        >
+
+    <form
+      name="form"
+      #form="ngForm"
+      (ngSubmit)="productInfo?.productStatus == 0 && addToCart()"
+    >
+      <div class="space-y-2">
+        <input name="productId" hidden [value]="productInfo?.productId" />
+        <p class="text-gray-800 font-semibold space-x-2">
+          <span>Availability: </span>
+          <span
+            class="text-green-600"
+            *ngIf="productInfo.productStatus == 0; else outOfStock"
+          >
+            In Stock</span
+          >
+          <ng-template #outOfStock>
+            <span class="text-red-600"> Out Of Stock</span>
+          </ng-template>
+        </p>
+        <p class="space-x-2">
+          <span class="text-gray-800 font-semibold">Brand: </span>
+          <span class="text-gray-600">Apex</span>
+        </p>
+        <p class="space-x-2">
+          <span class="text-gray-800 font-semibold">Category: </span>
+          <span
+            class="text-gray-600"
+            *ngIf="productInfo.categoryType == 0; else foodCategory"
+          >
+            Books</span
+          >
+          <ng-template #foodCategory>
+            <span
+              class="text-gray-600"
+              *ngIf="productInfo.categoryType == 1; else clothesCategory"
+              >Food</span
+            >
+          </ng-template>
+          <ng-template #clothesCategory>
+            <span
+              class="text-gray-600"
+              *ngIf="productInfo.categoryType == 2; else drinkCategory"
+              >Clothes</span
+            >
+          </ng-template>
+          <ng-template #drinkCategory>
+            <span class="text-gray-600">Drink</span>
+          </ng-template>
+        </p>
+        <p class="space-x-2">
+          <span class="text-gray-800 font-semibold">SKU: </span>
+          <span class="text-gray-600">BE45VGRT</span>
+        </p>
+      </div>
+      <div class="mt-4 flex items-baseline gap-3">
+        <span class="text-primary font-semibold text-xl">{{
+          productInfo?.productPrice | currency
+        }}</span>
+      </div>
+      <p class="mt-4 text-gray-600">
+        {{ productInfo.productDescription }}
       </p>
-      <p class="space-x-2">
-        <span class="text-gray-800 font-semibold">Brand: </span>
-        <span class="text-gray-600">Apex</span>
-      </p>
-      <p class="space-x-2">
-        <span class="text-gray-800 font-semibold">Category: </span>
-        <span class="text-gray-600">{{ productInfo.categoryType }}</span>
-      </p>
-      <p class="space-x-2">
-        <span class="text-gray-800 font-semibold">SKU: </span>
-        <span class="text-gray-600">BE45VGRT</span>
-      </p>
-    </div>
-    <div class="mt-4 flex items-baseline gap-3">
-      <span class="text-primary font-semibold text-xl">{{
-        productInfo?.productPrice | currency
-      }}</span>
-    </div>
-    <p class="mt-4 text-gray-600">
-      {{ productInfo.productDescription }}
-    </p>
-    <!-- quantity -->
-    <div class="mt-4">
-      <h3 class="text-base text-gray-800 mb-1">Quantity</h3>
-      <div
-        class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max"
-      >
-        <div
-          class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
-        >
-          -
-        </div>
-        <div class="h-8 w-10 flex items-center justify-center">4</div>
-        <div
-          class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
-        >
-          +
+      <!-- quantity -->
+      <div class="mt-4">
+        <h3 class="text-base text-gray-800 mb-1">Quantity</h3>
+        <div>
+          <div class="mb-3 xl:w-96">
+            <input
+              min="1"
+              [max]="productInfo?.productStock"
+              required
+              (change)="validateCount()"
+              [(ngModel)]="count"
+              name="count"
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Quantity"
+            />
+          </div>
         </div>
       </div>
-    </div>
-    <!-- color end -->
-    <!-- add to cart button -->
-    <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6">
-      <a
-        href="#"
-        class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center"
-      >
-        <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Add to
-        cart
-      </a>
-    </div>
-    <!-- add to cart button end -->
+      <p class="space-x-2">
+        <span class="text-gray-800 font-semibold">Subtotal: </span>
+        <span class="text-gray-600">{{
+          productInfo?.productPrice * count | currency
+        }}</span>
+      </p>
+      <!-- add to cart button -->
+      <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6">
+        <button
+          *ngIf="productInfo.productStatus == 0; else elseBlock"
+          class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center"
+        >
+          <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Add to
+          cart
+        </button>
+        <ng-template #elseBlock>
+          <button
+            disabled
+            class="bg-gray-300 border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase transition text-sm flex items-center"
+          >
+            <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Out of
+            stock
+          </button>
+        </ng-template>
+      </div>
+      <!-- add to cart button end -->
+    </form>
   </div>
   <!-- product content end -->
 </div>

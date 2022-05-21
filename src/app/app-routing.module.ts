@@ -1,3 +1,6 @@
+import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
+import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
+import { OrderComponent } from './pages/order/order.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { Role } from 'src/app/enum/role';
 import { AuthGuard } from './_guards/auth.guard';
@@ -20,6 +23,13 @@ const routes: Routes = [
   { path: 'product/:id', component: ProductDetailComponent },
   { path: 'category/:id', component: CardComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'checkout-success', component: CheckoutSuccessComponent },
+  {
+    path: 'order/:id',
+    component: OrderDetailComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
   { path: 'seller', redirectTo: 'seller/product', pathMatch: 'full' },
   {
     path: 'seller/product',

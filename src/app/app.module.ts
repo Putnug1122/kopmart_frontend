@@ -22,6 +22,7 @@ import { JwtInterceptorService } from './_interceptors/jwt-interceptor.service';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ProductEditComponent } from './pages/product-edit/product-edit.component';
+import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { ProductEditComponent } from './pages/product-edit/product-edit.componen
     HomeComponent,
     SearchComponent,
     ProductEditComponent,
+    CheckoutSuccessComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [

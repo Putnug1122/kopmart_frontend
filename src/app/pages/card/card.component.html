@@ -181,10 +181,18 @@
               productInfo.productPrice | currency
             }}</span>
             <a
-              href="#"
+              routerLink="/product/{{ productInfo.productId }}"
+              *ngIf="productInfo.productStatus == 0; else soldOut"
               class="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >Add to cart</a
             >
+            <ng-template #soldOut>
+              <span
+                class="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-800"
+              >
+                Sold out
+              </span>
+            </ng-template>
           </div>
         </div>
       </div>
