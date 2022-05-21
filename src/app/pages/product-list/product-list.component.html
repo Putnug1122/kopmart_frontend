@@ -1,1 +1,74 @@
-<p>product-list works!</p>
+<div class="container">
+  <div class="my-2">
+    <h1 class="text-xl font-bold tracking-wider text-center">Products</h1>
+  </div>
+  <table class="w-full shadow-inner mb-10">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="px-6 py-3 font-bold whitespace-nowrap">Image</th>
+        <th class="px-6 py-3 font-bold whitespace-nowrap">Code</th>
+        <th class="px-6 py-3 font-bold whitespace-nowrap">Name</th>
+        <th class="px-6 py-3 font-bold whitespace-nowrap">Type</th>
+        <th class="px-6 py-3 font-bold whitespace-nowrap">Description</th>
+        <th class="px-6 py-3 font-bold whitespace-nowrap">Price</th>
+        <th class="px-6 py-3 font-bold whitespace-nowrap">Stock</th>
+        <th class="px-6 py-3 font-bold whitespace-nowrap">Status</th>
+        <th class="px-6 py-3 font-bold whitespace-nowrap">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let productInfo of page?.content">
+        <td>
+          <div class="flex justify-center">
+            <img
+              src="{{ productInfo.productIcon }}"
+              class="object-cover h-28 w-28 rounded-2xl"
+              alt="image"
+            />
+          </div>
+        </td>
+        <td class="p-4 px-6 text-center whitespace-nowrap">
+          {{ productInfo.productId }}
+        </td>
+        <td class="p-4 px-6 text-center whitespace-nowrap">
+          <div class="flex flex-col items-center justify-center">
+            <h3>{{ productInfo.productName }}</h3>
+          </div>
+        </td>
+        <td class="p-4 px-6 text-center whitespace-nowrap">
+          {{ CategoryType[productInfo.categoryType] }}
+        </td>
+        <td class="p-4 px-6 text-center whitespace-nowrap">
+          {{ productInfo.productDescription }}
+        </td>
+        <td class="p-4 px-6 text-center whitespace-nowrap">
+          {{ productInfo.productPrice | currency }}
+        </td>
+        <td class="p-4 px-6 text-center whitespace-nowrap">
+          {{ productInfo.productStock }}
+        </td>
+        <td class="p-4 px-6 text-center whitespace-nowrap">
+          {{ ProductStatus[productInfo.productStatus] }}
+        </td>
+        <td class="p-4 px-6 text-center whitespace-nowrap">
+          <a
+            style="display: block"
+            routerLink="/seller/product/{{ productInfo.productId }}/edit"
+          >
+            Edit</a
+          >
+
+          <a
+            *ngIf="currentUser?.role == Role.Customer"
+            style="display: block"
+            (click)="remove(page.content, productInfo.productId)"
+            routerLink="./"
+          >
+            Remove</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-pagination [currentPage]="page"></app-pagination>
+</div>

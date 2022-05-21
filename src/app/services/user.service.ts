@@ -27,7 +27,7 @@ export class UserService {
     return this.currentUserSubject.value;
   }
 
-  login(loginForm: any): Observable<JwtResponse | null> {
+  login(loginForm): Observable<JwtResponse> {
     const url = `${apiUrl}/login`;
     return this.http.post<JwtResponse>(url, loginForm).pipe(
       tap((user) => {

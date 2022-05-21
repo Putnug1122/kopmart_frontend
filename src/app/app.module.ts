@@ -21,6 +21,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptorService } from './_interceptors/jwt-interceptor.service';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ProductEditComponent } from './pages/product-edit/product-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { SearchComponent } from './pages/search/search.component';
     PaginationComponent,
     HomeComponent,
     SearchComponent,
+    ProductEditComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [

@@ -5,13 +5,33 @@
     <p class="text-gray-600 mb-6 text-sm">
       Register here if you don't have account
     </p>
-    <form action="">
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
       <div class="space-y-4">
         <div>
           <label class="text-gray-600 mb-2 block">
             Full Name <span class="text-primary">*</span>
           </label>
-          <input type="text" class="input-box" placeholder="John Doe" />
+          <input
+            type="text"
+            class="input-box"
+            placeholder="John Doe"
+            [(ngModel)]="user.name"
+            #name="ngModel"
+            name="name"
+            required
+            autofocus
+            [ngClass]="{
+              'border-red-500': name.invalid && (name.touched || name.touched)
+            }"
+          />
+          <div *ngIf="name.invalid && (name.touched || name.dirty)">
+            <span class="text-xs text-red-700" *ngIf="name.errors.required">
+              Name is required</span
+            >
+            <span class="text-xs text-red-700" *ngIf="name.errors.minlength"
+              >Name must be at least 3 characters long</span
+            >
+          </div>
         </div>
         <div>
           <label class="text-gray-600 mb-2 block">
@@ -21,7 +41,24 @@
             type="email"
             class="input-box"
             placeholder="example@mail.com"
+            [(ngModel)]="user.email"
+            #email="ngModel"
+            name="email"
+            email
+            required
+            [ngClass]="{
+              'border-red-500':
+                email.invalid && (email.touched || email.touched)
+            }"
           />
+          <div *ngIf="email.invalid && (email.touched || email.dirty)">
+            <span class="text-xs text-red-700" *ngIf="email.errors.required">
+              Email is required</span
+            >
+            <span class="text-xs text-red-700" *ngIf="email.errors.email">
+              Email is invalid</span
+            >
+          </div>
         </div>
         <div>
           <label class="text-gray-600 mb-2 block"
@@ -31,33 +68,77 @@
             type="password"
             class="input-box"
             placeholder="type password"
+            [(ngModel)]="user.password"
+            #password="ngModel"
+            name="password"
+            minlength="3"
+            required
+            [ngClass]="{
+              'border-red-500':
+                password.invalid && (password.touched || password.touched)
+            }"
           />
+          <div *ngIf="password.invalid && (password.touched || password.dirty)">
+            <span class="text-xs text-red-700" *ngIf="password.errors.required">
+              Password is required</span
+            >
+            <span class="text-xs text-red-700" *ngIf="password.errors.minlength"
+              >Password must be at least 3 characters long</span
+            >
+          </div>
         </div>
         <div>
-          <label class="text-gray-600 mb-2 block"
-            >Confirm Password
+          <label class="text-gray-600 mb-2 block">
+            Address
             <span class="text-primary">*</span>
           </label>
           <input
-            type="password"
+            type="text"
             class="input-box"
-            placeholder="confirm your password"
+            placeholder="enter your address"
+            [(ngModel)]="user.address"
+            #address="ngModel"
+            name="address"
+            required
+            [ngClass]="{
+              'border-red-500':
+                address.invalid && (address.touched || address.touched)
+            }"
           />
+          <div *ngIf="address.invalid && (address.touched || address.dirty)">
+            <span class="text-xs text-red-700" *ngIf="address.errors.required">
+              Address is required</span
+            >
+          </div>
         </div>
-      </div>
-      <div class="flex items-center mt-6">
-        <input
-          type="checkbox"
-          id="agreement"
-          class="text-primary focus:ring-0 rounded-sm cursor-pointer"
-        />
-        <label for="agreement" class="text-gray-600 ml-3 cursor-pointer">
-          I have read and agree to the
-          <a href="#" class="text-primary">terms & conditions</a>
-        </label>
+        <div>
+          <label class="text-gray-600 mb-2 block">
+            Phone
+            <span class="text-primary">*</span>
+          </label>
+          <input
+            type="text"
+            class="input-box"
+            placeholder="enter your address"
+            [(ngModel)]="user.phone"
+            #phone="ngModel"
+            name="phone"
+            required
+            [ngClass]="{
+              'border-red-500':
+                phone.invalid && (phone.touched || phone.touched)
+            }"
+          />
+          <div *ngIf="phone.invalid && (phone.touched || phone.dirty)">
+            <span class="text-xs text-red-700" *ngIf="phone.errors.required">
+              Phone is required</span
+            >
+          </div>
+        </div>
       </div>
       <div class="mt-4">
         <button
+          [disabled]="!form.form.valid"
           type="submit"
           class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"
         >
