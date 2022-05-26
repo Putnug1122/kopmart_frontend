@@ -1,3 +1,4 @@
+import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { User } from './../../models/user';
@@ -10,7 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
   user: User;
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private toast: NgToastService
+  ) {
     this.user = new User();
   }
 
@@ -19,6 +24,11 @@ export class SignupComponent implements OnInit {
     this.userService.signUp(this.user).subscribe(
       (u) => {
         this.router.navigate(['/login']);
+        this.toast.success({
+          detail: 'Success Message',
+          summary: 'Signup Successful',
+          duration: 5000,
+        });
       },
       (e) => {}
     );

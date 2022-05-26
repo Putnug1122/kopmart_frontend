@@ -2,7 +2,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/enum/role';
-
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +41,11 @@ export class LoginComponent implements OnInit {
         }
 
         this.router.navigateByUrl(this.returnUrl);
+        this.toast.success({
+          detail: 'Success Message',
+          summary: 'Login Successful',
+          duration: 5000,
+        });
       } else {
         this.isLogout = false;
         this.isInvalid = true;

@@ -23,6 +23,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ProductEditComponent } from './pages/product-edit/product-edit.component';
 import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
+import { NgToastModule } from 'ng-angular-popup';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,13 @@ import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-succ
     ProductEditComponent,
     CheckoutSuccessComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NgToastModule,
+  ],
   providers: [
     CookieService,
     {

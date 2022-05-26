@@ -54,6 +54,7 @@
           <a
             style="display: block"
             routerLink="/seller/product/{{ productInfo.productId }}/edit"
+            class="text-primary underline"
           >
             Edit</a
           >
@@ -70,5 +71,7 @@
       </tr>
     </tbody>
   </table>
-  <app-pagination [currentPage]="page"></app-pagination>
+  <div class="flex items-center justify-center">
+    <app-pagination [currentPage]="page"></app-pagination>
+  </div>
 </div>
