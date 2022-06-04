@@ -1,3 +1,5 @@
+import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
 import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 import { OrderComponent } from './pages/order/order.component';
@@ -20,6 +22,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   { path: 'shop', component: CardComponent },
+  { path: 'search/:keyword', component: SearchPageComponent },
   { path: 'product/:id', component: ProductDetailComponent },
   { path: 'category/:id', component: CardComponent },
   { path: 'cart', component: CartComponent },
@@ -40,6 +43,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
     canActivate: [AuthGuard],
   },
   {

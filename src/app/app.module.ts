@@ -24,6 +24,8 @@ import { SearchComponent } from './pages/search/search.component';
 import { ProductEditComponent } from './pages/product-edit/product-edit.component';
 import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
 import { NgToastModule } from 'ng-angular-popup';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { SearchPageComponent } from './pages/search-page/search-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +44,8 @@ import { NgToastModule } from 'ng-angular-popup';
     SearchComponent,
     ProductEditComponent,
     CheckoutSuccessComponent,
+    ChangePasswordComponent,
+    SearchPageComponent,
   ],
   imports: [
     BrowserModule,

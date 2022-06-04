@@ -3,12 +3,14 @@
     <i class="fas fa-search"></i>
   </span>
   <input
+    #myInput
+    (keyup.enter)="doSearch(myInput.value)"
     type="text"
     class="pl-12 w-full border border-r-0 border-primary py-3 px-3 rounded-l-md focus:ring-primary focus:border-primary"
     placeholder="search"
   />
   <button
-    type="submit"
+    (click)="doSearch(myInput.value)"
     class="bg-primary border border-primary text-white px-8 font-medium rounded-r-md hover:bg-transparent hover:text-primary transition"
   >
     Search

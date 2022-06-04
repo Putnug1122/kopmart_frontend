@@ -60,6 +60,10 @@ export class ProductService {
     return this.http.delete(url);
   }
 
+  searchProducts(theKeyword: string): Observable<ProductInfo[]> {
+    const searchUrl = `${this.productUrl}/search?name=${theKeyword}`;
+    return this.http.get<ProductInfo[]>(searchUrl);
+  }
   /**
    * Handle Http operation that failed.
    * Let the app continue.
