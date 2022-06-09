@@ -1,0 +1,164 @@
+<h1 class="text-center my-10 text-2xl font-bold font-poppins">Add Product</h1>
+<div class="container mx-auto">
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="mb-6">
+      <label
+        for="productId"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Code</label
+      >
+      <input
+        [(ngModel)]="product.productId"
+        type="text"
+        id="productId"
+        #productId="ngModel"
+        #productIdInput
+        name="productId"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        required
+      />
+    </div>
+    <div class="mb-6">
+      <label
+        for="productIcon"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Photo Link</label
+      >
+      <input
+        type="text"
+        id="productIcon"
+        [(ngModel)]="product.productIcon"
+        name="productIcon"
+        placeholder="https://example.com/image.png"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        required
+      />
+    </div>
+    <div class="mb-6">
+      <label
+        for="productName"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Name</label
+      >
+      <input
+        type="text"
+        id="productName"
+        [(ngModel)]="product.productName"
+        #productName="ngModel"
+        name="productName"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        required
+      />
+      <div
+        *ngIf="
+          productName.invalid && (productName.dirty || productName.touched)
+        "
+      >
+        <div
+          *ngIf="productName.errors.required"
+          class="text-red-500 text-xs italic"
+        >
+          Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="mb-6">
+      <label
+        for="categoryType"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        >Category</label
+      >
+      <select
+        id="categoryType"
+        [(ngModel)]="product.categoryType"
+        name="categoryType"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option [ngValue]="0">Books</option>
+        <option [ngValue]="1">Food</option>
+        <option [ngValue]="2">Clothes</option>
+        <option [ngValue]="3">Drink</option>
+      </select>
+    </div>
+    <div class="mb-6">
+      <label
+        for="productDescription"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Description</label
+      >
+      <textarea
+        id="productDescription"
+        [(ngModel)]="product.productDescription"
+        name="productDescription"
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Description..."
+      ></textarea>
+    </div>
+    <div class="mb-6">
+      <label
+        for="productPrice"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Price</label
+      >
+      <input
+        type="number"
+        name="productPrice"
+        id="productPrice"
+        #productPrice="ngModel"
+        [(ngModel)]="product.productPrice"
+        (ngModelChange)="product.productPrice = $event"
+        required
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+    </div>
+    <div class="mb-6">
+      <label
+        for="productStock"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Stock</label
+      >
+      <input
+        type="number"
+        name="productStock"
+        id="productStock"
+        #productStock="ngModel"
+        [(ngModel)]="product.productStock"
+        min="0"
+        required
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+      <div
+        *ngIf="
+          productStock.invalid && (productStock.dirty || productStock.touched)
+        "
+      >
+        <div *ngIf="productStock.errors.required">Stock is required.</div>
+      </div>
+    </div>
+    <div class="mb-6">
+      <label
+        for="productStatus"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        >Status</label
+      >
+      <select
+        id="productStatus"
+        [(ngModel)]="product.productStatus"
+        name="productStatus"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option [ngValue]="0">Available</option>
+        <option [ngValue]="1">Unavailable</option>
+      </select>
+    </div>
+    <button
+      [disabled]="!form.form.valid"
+      type="submit"
+      class="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      Submit
+    </button>
+  </form>
+</div>

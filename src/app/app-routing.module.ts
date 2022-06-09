@@ -1,3 +1,4 @@
+import { AddProductComponent } from './pages/add-product/add-product.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
@@ -57,10 +58,10 @@ const routes: Routes = [
     data: { roles: [Role.Manager, Role.Employee] },
   },
   {
-    path: 'seller/product/:id/new',
-    component: ProductEditComponent,
+    path: 'seller/product/new',
+    component: AddProductComponent,
     canActivate: [AuthGuard],
-    data: { roles: [Role.Employee] },
+    data: { roles: [Role.Manager] },
   },
 ];
 
