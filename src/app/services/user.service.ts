@@ -1,4 +1,4 @@
-import { apiUrl } from './../../environments/environment';
+import { environment } from './../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtResponse } from './../response/jwt-response';
 import { Injectable } from '@angular/core';
@@ -10,6 +10,7 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UserService {
+  baseUrl = environment.baseUrl;
   private currentUserSubject: BehaviorSubject<JwtResponse>;
   public currentUser: Observable<JwtResponse>;
   public nameTerms = new Subject<string>();
@@ -28,7 +29,7 @@ export class UserService {
   }
 
   login(loginForm): Observable<JwtResponse> {
-    const url = `${apiUrl}/login`;
+    const url = `${this.baseUrl}/login`;
     return this.http.post<JwtResponse>(url, loginForm).pipe(
       tap((user) => {
         if (user && user.token) {
@@ -53,17 +54,17 @@ export class UserService {
   }
 
   signUp(user: User): Observable<User> {
-    const url = `${apiUrl}/register`;
+    const url = `${this.baseUrl}/register`;
     return this.http.post<User>(url, user);
   }
 
   update(user: User): Observable<User> {
-    const url = `${apiUrl}/profile`;
+    const url = `${this.baseUrl}/profile`;
     return this.http.put<User>(url, user);
   }
 
   get(email: string): Observable<User> {
-    const url = `${apiUrl}/profile/${email}`;
+    const url = `${this.baseUrl}/profile/${email}`;
     return this.http.get<User>(url);
   }
 

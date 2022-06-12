@@ -1,14 +1,15 @@
 import { Order } from './../models/order';
 import { catchError, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { apiUrl } from './../../environments/environment';
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  private orderUrl = `${apiUrl}/order`;
+  baseUrl = environment.baseUrl;
+  private orderUrl = `${this.baseUrl}/order`;
 
   constructor(private http: HttpClient) {}
 
