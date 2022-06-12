@@ -64,6 +64,11 @@ export class ProductService {
     const searchUrl = `${this.productUrl}/search?name=${theKeyword}`;
     return this.http.get<ProductInfo[]>(searchUrl);
   }
+
+  getNewArrivalProducts(): Observable<ProductInfo[]> {
+    const url = `${this.productUrl}/new`;
+    return this.http.get<ProductInfo[]>(url);
+  }
   /**
    * Handle Http operation that failed.
    * Let the app continue.
