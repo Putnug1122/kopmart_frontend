@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
+  baseUrl: 'http://localhost:8080/api',
 };
-
-export const apiUrl = 'https://kopmart-backend.herokuapp.com/api';
 
 /*
  * For easier debugging in development mode, you can import the following file

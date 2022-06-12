@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { apiUrl } from './../../environments/environment';
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { ProductInfo } from '../models/product-info';
@@ -8,8 +8,9 @@ import { ProductInfo } from '../models/product-info';
   providedIn: 'root',
 })
 export class ProductService {
-  private productUrl = `${apiUrl}/product`;
-  private categoryUrl = `${apiUrl}/category`;
+  baseUrl = environment.baseUrl;
+  private productUrl = `${this.baseUrl}/product`;
+  private categoryUrl = `${this.baseUrl}/category`;
 
   constructor(private http: HttpClient) {}
 
@@ -46,17 +47,17 @@ export class ProductService {
   }
 
   update(productInfo: ProductInfo): Observable<ProductInfo> {
-    const url = `${apiUrl}/seller/product/${productInfo.productId}/edit`;
+    const url = `${this.baseUrl}/seller/product/${productInfo.productId}/edit`;
     return this.http.put<ProductInfo>(url, productInfo);
   }
 
   create(productInfo: ProductInfo): Observable<ProductInfo> {
-    const url = `${apiUrl}/seller/product/new`;
+    const url = `${this.baseUrl}/seller/product/new`;
     return this.http.post<ProductInfo>(url, productInfo);
   }
 
   delete(productInfo: ProductInfo): Observable<any> {
-    const url = `${apiUrl}/seller/product/${productInfo.productId}/delete`;
+    const url = `${this.baseUrl}/seller/product/${productInfo.productId}/delete`;
     return this.http.delete(url);
   }
 

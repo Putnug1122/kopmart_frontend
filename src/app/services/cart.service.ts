@@ -1,4 +1,4 @@
-import { apiUrl } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserService } from './user.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -14,7 +14,9 @@ import { Cart } from '../models/cart';
   providedIn: 'root',
 })
 export class CartService {
-  private cartUrl = `${apiUrl}/cart`;
+  baseUrl = environment.baseUrl;
+
+  private cartUrl = `${this.baseUrl}/cart`;
 
   localMap = {};
 
