@@ -1,3 +1,4 @@
+import { apiUrl } from 'src/environments/environment';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserService } from './user.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -6,7 +7,6 @@ import { JwtResponse } from './../response/jwt-response';
 import { Item } from './../models/item';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { apiUrl } from 'src/environments/environment';
 import { ProductInOrder } from '../models/product-in-order';
 import { Cart } from '../models/cart';
 
