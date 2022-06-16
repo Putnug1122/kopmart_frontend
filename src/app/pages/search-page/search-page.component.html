@@ -164,10 +164,10 @@
               >5.0</span
             >
           </div>
-          <div class="flex justify-between items-center">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white">{{
-              productInfo.productPrice | currency
-            }}</span>
+          <span class="text-2xl font-bold text-gray-900 dark:text-white">{{
+            productInfo.productPrice | currency: "Rp "
+          }}</span>
+          <div class="flex justify-between items-center mt-3">
             <a
               routerLink="/product/{{ productInfo.productId }}"
               *ngIf="productInfo.productStatus == 0; else soldOut"
