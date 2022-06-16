@@ -62,10 +62,7 @@
             <span class="text-red-600"> Out Of Stock</span>
           </ng-template>
         </p>
-        <p class="space-x-2">
-          <span class="text-gray-800 font-semibold">Brand: </span>
-          <span class="text-gray-600">Apex</span>
-        </p>
+
         <p class="space-x-2">
           <span class="text-gray-800 font-semibold">Category: </span>
           <span
@@ -92,14 +89,10 @@
             <span class="text-gray-600">Drink</span>
           </ng-template>
         </p>
-        <p class="space-x-2">
-          <span class="text-gray-800 font-semibold">SKU: </span>
-          <span class="text-gray-600">BE45VGRT</span>
-        </p>
       </div>
       <div class="mt-4 flex items-baseline gap-3">
         <span class="text-primary font-semibold text-xl">{{
-          productInfo?.productPrice | currency
+          productInfo?.productPrice | currency: "Rp "
         }}</span>
       </div>
       <p class="mt-4 text-gray-600">
@@ -127,7 +120,7 @@
       <p class="space-x-2">
         <span class="text-gray-800 font-semibold">Subtotal: </span>
         <span class="text-gray-600">{{
-          productInfo?.productPrice * count | currency
+          productInfo?.productPrice * count | currency: "Rp "
         }}</span>
       </p>
       <!-- add to cart button -->

@@ -93,7 +93,7 @@
         routerLink="/category/0"
         class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 flex items-center justify-center text-xl text-white font-roboto font-medium tracking-wide transition"
       >
-        Books
+        Buku
       </a>
     </div>
     <!-- single category end -->
@@ -104,7 +104,7 @@
         routerLink="/category/2"
         class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 flex items-center justify-center text-xl text-white font-roboto font-medium tracking-wide transition"
       >
-        Clothes
+        Pakaian
       </a>
     </div>
     <!-- single category end -->
@@ -115,7 +115,7 @@
         routerLink="/category/3"
         class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 flex items-center justify-center text-xl text-white font-roboto font-medium tracking-wide transition"
       >
-        Foods
+        Makanan
       </a>
     </div>
     <!-- single category end -->
@@ -126,7 +126,7 @@
         routerLink="/category/1"
         class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 flex items-center justify-center text-xl text-white font-roboto font-medium tracking-wide transition"
       >
-        Drinks
+        Minuman
       </a>
     </div>
   </div>
@@ -136,7 +136,7 @@
 <!-- top new arrival -->
 <div class="container pb-16">
   <h2 class="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-6">
-    top new arrival
+    Produk Terbaru
   </h2>
   <!-- product wrapper -->
   <div class="grid lg:grid-cols-4 sm:grid-cols-2 gap-6">
@@ -216,10 +216,10 @@
             >5.0</span
           >
         </div>
-        <div class="flex justify-between items-center">
-          <span class="text-3xl font-bold text-gray-900 dark:text-white">{{
-            productInfo.productPrice | currency
-          }}</span>
+        <span class="text-2xl font-bold text-gray-900 dark:text-white">{{
+          productInfo.productPrice | currency: "Rp "
+        }}</span>
+        <div class="flex justify-between items-center mt-3">
           <a
             routerLink="/product/{{ productInfo.productId }}"
             *ngIf="productInfo.productStatus == 0; else soldOut"

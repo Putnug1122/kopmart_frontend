@@ -31,7 +31,7 @@
           {{ order.buyerAddress }}
         </td>
         <td class="p-4 px-6 text-center whitespace-nowrap">
-          {{ order.orderAmount | currency }}
+          {{ order.orderAmount | currency: "Rp " }}
         </td>
         <td class="p-4 px-6 text-center whitespace-nowrap">
           {{ order.createTime }}
